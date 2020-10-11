@@ -12,4 +12,14 @@ class ConfigService {
 
         return value;
     }
+
+    //TODO: Change to more meaningful name (Strange return type according to name)
+    public ensureValues(keys: string[]): ConfigService {
+        keys.forEach(k => this.getValue(k, true));
+        return this;
+    }
+
+    public getPort(): string {
+        return this.getValue('PORT', true);
+    }
 }
