@@ -21,4 +21,4 @@ import * as Joi from "@hapi/joi";
     exports: [ConfigService, PostgresConfigService]
 })
 
-export class AppConfigModule {}
+export class PostgresConfigModule {}
