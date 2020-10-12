@@ -11,7 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
             validationSchema: Joi.object({
                 APP_PORT: Joi.number().default('4000'),
                 APP_MODE: Joi.string().valid('development', 'production', 'test').default('development'),
-                APP_URL: Joi.string().default('/api/v1')
+                APP_PREFIX: Joi.string().default('/api/v1')
             })
         })
     ],

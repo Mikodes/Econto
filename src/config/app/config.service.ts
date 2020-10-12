@@ -12,7 +12,7 @@ export class AppConfigService {
         return this._configService.get<string>('app.mode');
     }
 
-    get url(): string {
-        return this._configService.get<string>('app.url');
+    get prefix(): string {
+        return this._configService.get<string>('app.prefix');
     }
 }
