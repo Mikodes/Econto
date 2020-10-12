@@ -2,7 +2,7 @@
   "type": "postgres",
   "ssl": false,
   "host": "192.168.99.100",
-  "port": 5432,
+  "port": "5432",
   "username": "postgres",
   "password": "p2FXF1nTqvpe5plj",
   "database": "main",
@@ -11,9 +11,9 @@
   ],
   "migrationsTableName": "migrations",
   "migrations": [
-    "src/migrations/*.ts"
+    "src/database/migrations/*.ts"
   ],
   "cli": {
-    "migrationsDir": "src/migrations"
+    "migrationsDir": "src/database/migrations"
   }
 }

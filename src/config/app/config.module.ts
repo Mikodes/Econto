@@ -4,9 +4,6 @@ import { AppConfigService } from './config.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from "@hapi/joi";
 
-//TODO: Configure generating ormconfig.json from npm command
-//TODO: Remove unnecessary .env variables
-
 @Module({
     imports: [
         ConfigModule.forRoot({
