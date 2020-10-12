@@ -1,18 +1,17 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppConfigModule } from './config/app/config.module';
-import configService from './config/config.service';
-import { PostgresConfigService } from './config/database/postgres/config.service';
+import { PostgresConfigModule } from './config/database/postgres/config.module';
 import { ItemModule } from './models/item.module';
+import { PostgresDatabaseProviderModule } from './providers/database/postgres/provider.module';
 
 @Module({
     imports: [
-        TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
+        PostgresDatabaseProviderModule,
         ItemModule,
         AppConfigModule,
-        PostgresConfigService
+        PostgresConfigModule
     ],
     controllers: [AppController],
     providers: [AppService],

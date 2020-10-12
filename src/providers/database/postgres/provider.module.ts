@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from "@nestjs/typeorm";
-import { PostgresConfigService } from "src/config/database/postgres/config.service";
+import { PostgresConfigService } from "../../../config/database/postgres/config.service";
 import { PostgresConfigModule } from '../../../config/database/postgres/config.module';
 
 @Module({
