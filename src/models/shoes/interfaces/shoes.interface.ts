@@ -2,9 +2,9 @@ import { Color, Gender } from "../../constants";
 
 export interface IShoes {
     name: string;
+    price: number;
     brand: string;
-    gender: Gender;
     size: number;
     color: Color;
-    price: number;
+    gender: Gender;
 }
