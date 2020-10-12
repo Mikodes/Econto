@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "ssl": false,
+  "host": "192.168.99.100",
+  "port": 5432,
+  "username": "postgres",
+  "password": "p2FXF1nTqvpe5plj",
+  "database": "main",
+  "entities": [
+    "**/*.entity{.ts,.js}"
+  ],
+  "migrationsTableName": "migration",
+  "migrations": [
+    "src/migration/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/migration"
+  }
+}

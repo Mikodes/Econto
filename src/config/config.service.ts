@@ -20,12 +20,17 @@ class ConfigService {
     }
 
     public getPort(): string {
-        return this.getValue('PORT', true);
+        return this.getValue('PORT');
     }
 
     public isProduction(): boolean {
         const mode = this.getValue('MODE', false);
         return mode !== 'DEV';
+    }
+
+    public isNewOrmConfigRequired(): boolean {
+        const generateNewConfig = this.getValue('GENERATE_ORM_CONFIG', false);
+        return generateNewConfig === 'true';
     }
 
     public getTypeOrmConfig(): TypeOrmModuleOptions {
