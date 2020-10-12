@@ -46,10 +46,10 @@ class ConfigService {
 
             entities: ['**/*.entity{.ts,.js}'],
             migrationsTableName: 'migrations',
-            migrations: ['src/migrations/*.ts'],
+            migrations: ['src/database/migrations/*.ts'],
 
             cli: {
-                migrationsDir: 'src/migrations'
+                migrationsDir: 'src/database/migrations'
             }
         };
     }
