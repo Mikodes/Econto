@@ -10,6 +10,7 @@
     "start": "nest start",
     "start:dev": "nodemon --config nodemon.json",
     "start:dev:db": "bash ./src/scripts/start-db.sh",
+    "start:dev:db:admin": "bash ./src/scripts/start-db-admin.sh",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "pretypeorm": "bash ./src/scripts/remove-orm-config.sh && ts-node -r tsconfig-paths/register src/config/database/generate-orm-config.ts",
