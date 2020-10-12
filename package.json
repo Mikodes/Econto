@@ -12,7 +12,10 @@
     "start:dev:db": "bash ./src/scripts/start-db.sh",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "pretypeorm": "bash ./src/scripts/remove-orm-config.sh && ts-node -r tsconfig-paths/register src/config/database/generate-orm-config.ts"
+    "pretypeorm": "bash ./src/scripts/remove-orm-config.sh && ts-node -r tsconfig-paths/register src/config/database/generate-orm-config.ts",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "typeorm:migration:generate": "npm run typeorm -- migration:generate -n",
+    "typeorm:migration:run": "npm run typeorm -- migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
