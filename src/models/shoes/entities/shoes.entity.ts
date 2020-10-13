@@ -1,12 +1,8 @@
 import { Color, Gender } from "../../../common/constants";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { IShoes } from "../interfaces/shoes.interface";
+import { BaseEntity, Column, Entity } from "typeorm";
 
 @Entity({ name: 'shoes' })
-export class Shoes implements IShoes {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
-
+export class Shoes extends BaseEntity {
     @Column()
     name: string;
 
@@ -24,10 +20,4 @@ export class Shoes implements IShoes {
 
     @Column({ type: 'enum', enum: Gender })
     gender: Gender;
-
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updatedAt: Date;
 }

@@ -1,20 +1,17 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { CreateShoesDto } from "./dtos/create.dto";
-import { ShoesEntity } from "./serializers/shoes.serializer";
-import { ShoesRepository } from "./shoes.repository";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Shoes } from './entities/shoes.entity';
 
 @Injectable()
 export class ShoesService {
-    constructor(@InjectRepository(ShoesRepository) private readonly _shoesRepository: ShoesRepository) {}
+    constructor(@InjectRepository(Shoes) private readonly _shoesRepository: Repository<Shoes>) { }
 
-    async get(id: string, relations: string[] = [], throwsException = false): Promise<ShoesEntity> {
-        return await this._shoesRepository.get(id, relations, throwsException);
+    public async getAll(): Promise<Shoes[]> {
+        return await this._shoesRepository.find();
     }
 
-    async create(inputs: CreateShoesDto): Promise<ShoesEntity> {
-        return await this._shoesRepository.createEntity(inputs);
+    public async create(shoes: Shoes): Promise<Shoes> {
+        return this._shoesRepository.save(shoes);
     }
-
-    //TODO: Create update method
 }
