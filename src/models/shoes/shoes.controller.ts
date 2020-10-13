@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
 import { Shoes } from './entities/shoes.entity';
@@ -31,5 +31,15 @@ export class ShoesController {
         const response = ShoesResponse.fromObject(shoes);
 
         return response;
+    }
+
+    @Delete('/:id')
+    public async deleteById(@Param('id') id: string): Promise<void> {
+        const shoesList: Shoes[] = await this._shoesService.getAll();
+        const shoes: Shoes | null = shoesList.filter(shoe => shoe.id === id)[0];
+
+        if(!shoes) throw new NotFoundException('Shoes with provided id not found');
+
+        await this._shoesService.deleteById(id);
     }
 }

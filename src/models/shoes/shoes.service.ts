@@ -18,4 +18,8 @@ export class ShoesService {
     public async create(shoes: Shoes): Promise<Shoes> {
         return this._shoesRepository.save(shoes);
     }
+
+    public async deleteById(id: string): Promise<void> {
+        this._shoesRepository.delete({ id });
+    }
 }
