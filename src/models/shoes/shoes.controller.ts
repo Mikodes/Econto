@@ -4,7 +4,7 @@ import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
 
 @Controller('shoes')
-export class ItemController {
+export class ShoesController {
     constructor(private readonly _shoesService: ShoesService) { }
 
     @Get()
@@ -14,6 +14,6 @@ export class ItemController {
 
     @Post()
     public async create(@Body() createShoesDto: CreateShoesDto): Promise<Shoes> {
-        return this._shoesService.create(createShoesDto.toEntity())
+        // return this._shoesService.create(CreateShoesDto)
     }
 }

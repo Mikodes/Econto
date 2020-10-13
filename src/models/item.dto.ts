@@ -21,9 +21,9 @@ export class ItemDTO implements Readonly<ItemDTO> {
 
     public static fromEntity(entity: Item) {
         return this.from({
-        id: entity.id,
-        name: entity.name,
-        description: entity.description
+            id: entity.id,
+            name: entity.name,
+            description: entity.description
         });
     }
 
@@ -32,7 +32,6 @@ export class ItemDTO implements Readonly<ItemDTO> {
         it.id = this.id;
         it.name = this.name;
         it.description = this.description;
-        it.createDateTime = new Date();
         return it;
     }
 }

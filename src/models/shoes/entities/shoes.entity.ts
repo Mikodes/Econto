@@ -1,5 +1,6 @@
 import { Color, Gender } from "../../../common/constants";
-import { BaseEntity, Column, Entity } from "typeorm";
+import { Column, Entity } from "typeorm";
+import { BaseEntity } from "../../base.entity";
 
 @Entity({ name: 'shoes' })
 export class Shoes extends BaseEntity {
