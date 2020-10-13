@@ -7,8 +7,11 @@ import { Shoes } from './entities/shoes.entity';
 export class ShoesService {
     constructor(@InjectRepository(Shoes) private readonly _shoesRepository: Repository<Shoes>) { }
 
-    public async getById(id: string): Promise<Shoes> {
-        return await this._shoesRepository.findOne(id);
+    public async getById(id: string): Promise<Shoes | null> {
+        const shoesList: Shoes[] = await this.getAll();
+        const shoes: Shoes | null = shoesList.filter(shoe => shoe.id === id)[0];
+
+        return shoes;
     }
 
     public async getAll(): Promise<Shoes[]> {
@@ -23,7 +26,7 @@ export class ShoesService {
         this._shoesRepository.delete({ id });
     }
 
-    public async updateById(id: string, shoes: Shoes): Promise<void> {
+    public async updateById(id: string, shoes: Partial<Shoes>): Promise<void> {
         this._shoesRepository.update({ id }, shoes);
     }
 }

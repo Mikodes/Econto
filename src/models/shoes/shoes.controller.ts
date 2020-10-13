@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
+import { UpdateShoesRequest } from './dtos/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
 
@@ -10,7 +11,10 @@ export class ShoesController {
 
     @Get('/:id')
     public async getById(@Param('id') id: string): Promise<ShoesResponse> {
-        const shoes: Shoes = await this._shoesService.getById(id);
+        const shoes: Shoes | null = await this._shoesService.getById(id);
+
+        if(!shoes) throw new NotFoundException('Shoes with provided id not found');
+        
         const response: ShoesResponse = ShoesResponse.fromObject(shoes);
 
         return response;
@@ -35,11 +39,19 @@ export class ShoesController {
 
     @Delete('/:id')
     public async deleteById(@Param('id') id: string): Promise<void> {
-        const shoesList: Shoes[] = await this._shoesService.getAll();
-        const shoes: Shoes | null = shoesList.filter(shoe => shoe.id === id)[0];
+        const shoes: Shoes | null = await this._shoesService.getById(id);
 
         if(!shoes) throw new NotFoundException('Shoes with provided id not found');
 
         await this._shoesService.deleteById(id);
+    }
+
+    @Patch('/:id')
+    public async updateById(@Param('id') id: string, @Body() body: UpdateShoesRequest): Promise<void> {
+        const shoes: Shoes | null = await this._shoesService.getById(id);
+
+        if(!shoes) throw new NotFoundException('Shoes with provided id not found');
+
+        await this._shoesService.updateById(id, body);
     }
 }
