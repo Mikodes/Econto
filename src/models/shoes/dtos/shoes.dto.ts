@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
-import { Color, Gender } from "src/common/constants";
+import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
 
 export class ShoesDto implements Readonly<ShoesDto> {
