@@ -7,6 +7,10 @@ import { Shoes } from './entities/shoes.entity';
 export class ShoesService {
     constructor(@InjectRepository(Shoes) private readonly _shoesRepository: Repository<Shoes>) { }
 
+    public async getById(id: string): Promise<Shoes> {
+        return await this._shoesRepository.findOne(id);
+    }
+
     public async getAll(): Promise<Shoes[]> {
         return await this._shoesRepository.find();
     }

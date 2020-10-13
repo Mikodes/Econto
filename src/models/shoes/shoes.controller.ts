@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
 import { Shoes } from './entities/shoes.entity';
@@ -7,6 +7,14 @@ import { ShoesService } from './shoes.service';
 @Controller('shoes')
 export class ShoesController {
     constructor(private readonly _shoesService: ShoesService) { }
+
+    @Get('/:id')
+    public async getById(@Param('id') id: string): Promise<ShoesResponse> {
+        const shoes: Shoes = await this._shoesService.getById(id);
+        const response: ShoesResponse = ShoesResponse.fromObject(shoes);
+
+        return response;
+    }
 
     @Get()
     public async getAll(): Promise<ShoesResponse[]> {
