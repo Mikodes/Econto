@@ -27,6 +27,7 @@ export class CreateShoesDto implements Readonly<CreateShoesDto> {
     @IsNotEmpty()
     gender: Gender;
 
+    //TODO: Consider changing method's name
     public toEntity(): Shoes {
         const entity = new Shoes();
 

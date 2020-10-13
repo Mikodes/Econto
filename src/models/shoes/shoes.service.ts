@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { CreateShoesDto } from "./dtos/create.dto";
 import { ShoesEntity } from "./serializers/shoes.serializer";
 import { ShoesRepository } from "./shoes.repository";
 
@@ -11,5 +12,9 @@ export class ShoesService {
         return await this._shoesRepository.get(id, relations, throwsException);
     }
 
-    //TODO: Create DTO's directory and add shoes dtos (create, edit)
+    async create(inputs: CreateShoesDto): Promise<ShoesEntity> {
+        return await this._shoesRepository.createEntity(inputs);
+    }
+
+    //TODO: Create update method
 }
