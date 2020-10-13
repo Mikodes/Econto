@@ -1,50 +1,26 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
-import { Color, Gender } from "../../../common/constants";
+import { IsUUID } from "class-validator";
 import { Shoes } from "../entities/shoes.entity";
+import { CreateShoesDto } from "./create.dto";
 
-export class ShoesDto implements Readonly<ShoesDto> {
+export class ShoesDto extends CreateShoesDto implements Readonly<ShoesDto> {
     @IsUUID()
     id: string;
-    
-    @IsString()
-    @IsNotEmpty()
-    name: string;
 
-    @IsNumber()
-    @IsNotEmpty()
-    price: number;
-
-    @IsString()
-    @IsNotEmpty()
-    brand: string;
-
-    @IsNumber()
-    @IsNotEmpty()
-    size: number;
-
-    @IsEnum(Color)
-    @IsNotEmpty()
-    color: Color;
-
-    @IsEnum(Gender)
-    @IsNotEmpty()
-    gender: Gender;
-
-    public static from(partialShoesDto: Partial<ShoesDto>) {
+    public static from(object: Partial<ShoesDto>): ShoesDto {
         const shoesDto = new ShoesDto();
 
-        shoesDto.id = partialShoesDto.id;
-        shoesDto.name = partialShoesDto.name;
-        shoesDto.price = partialShoesDto.price;
-        shoesDto.brand = partialShoesDto.brand;
-        shoesDto.size = partialShoesDto.size;
-        shoesDto.color = partialShoesDto.color;
-        shoesDto.gender = partialShoesDto.gender;
+        shoesDto.id = object.id;
+        shoesDto.name = object.name;
+        shoesDto.price = object.price;
+        shoesDto.brand = object.brand;
+        shoesDto.size = object.size;
+        shoesDto.color = object.color;
+        shoesDto.gender = object.gender;
 
         return shoesDto;
     }
 
-    public static fromEntity(entity: Shoes) {
+    public static fromEntity(entity: Shoes): ShoesDto {
         return this.from({
             id: entity.id,
             name: entity.name,
