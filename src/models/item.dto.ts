@@ -1,4 +1,4 @@
-import { IsString, IsUUID, } from 'class-validator';
+import { IsString, IsUUID } from 'class-validator';
 import { Item } from './item.entity';
 
 export class ItemDTO implements Readonly<ItemDTO> {
