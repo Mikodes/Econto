@@ -1,4 +1,4 @@
-import { Color, Gender } from "src/models/constants";
+import { Color, Gender } from "../../../common/constants";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IShoes } from "../interfaces/shoes.interface";
 

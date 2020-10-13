@@ -1,4 +1,4 @@
-import { Color, Gender } from "../../constants";
+import { Color, Gender } from "../../../common/constants";
 
 export interface IShoes {
     name: string;

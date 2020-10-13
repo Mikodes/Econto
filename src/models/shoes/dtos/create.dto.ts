@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { Color, Gender } from "src/models/constants";
+import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
 
 export class CreateShoesDto implements Readonly<CreateShoesDto> {
@@ -28,6 +28,7 @@ export class CreateShoesDto implements Readonly<CreateShoesDto> {
     gender: Gender;
 
     //TODO: Consider changing method's name
+    
     public toEntity(): Shoes {
         const entity = new Shoes();
 
