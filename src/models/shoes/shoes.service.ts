@@ -22,4 +22,8 @@ export class ShoesService {
     public async deleteById(id: string): Promise<void> {
         this._shoesRepository.delete({ id });
     }
+
+    public async updateById(id: string, shoes: Shoes): Promise<void> {
+        this._shoesRepository.update({ id }, shoes);
+    }
 }

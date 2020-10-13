@@ -1,12 +1,9 @@
-import { IsEnum, IsNumber, IsString, IsUUID } from "class-validator";
-import { assignObject } from "../../../common/utils";
+import { IsEnum, IsNumber, IsString } from "class-validator";
+import { assignObject } from "src/common/utils";
 import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
 
-export class ShoesResponse implements Readonly<ShoesResponse> {
-    @IsUUID()
-    id: string;
-
+export class UpdateShoesRequest implements Readonly<UpdateShoesRequest> {
     @IsString()
     name: string;
 
@@ -24,14 +21,6 @@ export class ShoesResponse implements Readonly<ShoesResponse> {
 
     @IsEnum(Gender)
     gender: Gender;
-    
-    public static fromObject(object: Partial<ShoesResponse>): ShoesResponse {
-        const shoesResponse = new ShoesResponse();
-
-        assignObject<ShoesResponse>(shoesResponse, object, FIELDS);
-
-        return shoesResponse;
-    }
 
     public toEntity(): Shoes {
         const entity = new Shoes();
