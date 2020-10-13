@@ -1,40 +1,47 @@
-import { IsUUID } from "class-validator";
+import { IsEnum, IsNumber, IsString, IsUUID } from "class-validator";
+import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
-import { CreateShoesDto } from "./create.dto";
 
-export class ShoesDto extends CreateShoesDto implements Readonly<ShoesDto> {
+export class ShoesResponse implements Readonly<ShoesResponse> {
     @IsUUID()
     id: string;
 
-    public static from(object: Partial<ShoesDto>): ShoesDto {
-        const shoesDto = new ShoesDto();
+    @IsString()
+    name: string;
 
-        shoesDto.id = object.id;
-        shoesDto.name = object.name;
-        shoesDto.price = object.price;
-        shoesDto.brand = object.brand;
-        shoesDto.size = object.size;
-        shoesDto.color = object.color;
-        shoesDto.gender = object.gender;
+    @IsNumber()
+    price: number;
 
-        return shoesDto;
-    }
+    @IsString()
+    brand: string;
 
-    public static fromEntity(entity: Shoes): ShoesDto {
-        return this.from({
-            id: entity.id,
-            name: entity.name,
-            price: entity.price,
-            brand: entity.brand,
-            size: entity.size,
-            color: entity.color,
-            gender: entity.gender
-        });
+    @IsNumber()
+    size: number;
+
+    @IsEnum(Color)
+    color: Color;
+
+    @IsEnum(Gender)
+    gender: Gender;
+    
+    public static fromObject(object: Partial<ShoesResponse>): ShoesResponse {
+        const shoesResponse = new ShoesResponse();
+
+        shoesResponse.id = object.id;
+        shoesResponse.name = object.name;
+        shoesResponse.price = object.price;
+        shoesResponse.brand = object.brand;
+        shoesResponse.size = object.size;
+        shoesResponse.color = object.color;
+        shoesResponse.gender = object.gender;
+
+        return shoesResponse;
     }
 
     public toEntity(): Shoes {
         const entity = new Shoes();
 
+        entity.id = this.id;
         entity.name = this.name;
         entity.price = this.price;
         entity.brand = this.brand;

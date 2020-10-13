@@ -1,7 +1,7 @@
 import { IsEnum, IsNumber, IsString } from "class-validator";
 import { Color, Gender } from "../../../common/constants";
 
-export class CreateShoesDto implements Readonly<CreateShoesDto> {
+export class CreateShoesRequest implements Readonly<CreateShoesRequest> {
     @IsString()
     name: string;
 
