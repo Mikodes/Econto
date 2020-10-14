@@ -11,3 +11,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+//TODO: Create custom exceptions and middleware to catch them;
