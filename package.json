@@ -11,11 +11,10 @@
     "start:dev": "nodemon --config nodemon.json",
     "start:dev:db": "bash ./src/scripts/start-db.sh",
     "start:dev:db:admin": "bash ./src/scripts/start-db-admin.sh",
-    "seed": "ts-node -r tsconfig-paths/register src/config/database/seed.ts",
+    "seed:shoes": "ts-node -r tsconfig-paths/register src/database/seeders/shoes/seeder.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "pretypeorm": "rm -f ormconfig.json && ts-node -r tsconfig-paths/register src/database/utils/generate-orm-config.ts",
-    "orm": "ts-node -r tsconfig-paths/register src/database/utils/read-orm-config.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:migration:generate": "npm run typeorm -- migration:generate -n",
     "typeorm:migration:run": "npm run typeorm -- migration:run"
@@ -27,6 +26,7 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/typeorm": "^7.1.4",
+    "chalk": "^4.1.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
@@ -35,7 +35,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "typeorm": "^0.2.28"
+    "typeorm": "^0.2.28",
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
