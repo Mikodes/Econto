@@ -17,3 +17,4 @@ async function bootstrap() {
 bootstrap();
 
 //TODO: Create create-user.sh 
+//TODO: Create loginRequest and loginResponse (dto)
