@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { ShoesNotFoundException } from '../../common/exceptions/shoes-not-found.exception';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
 import { UpdateShoesRequest } from './dtos/update.dto';
@@ -13,7 +14,7 @@ export class ShoesController {
     public async getById(@Param('id') id: string): Promise<ShoesResponse> {
         const shoes: Shoes | null = await this._shoesService.getById(id);
 
-        if(!shoes) throw new NotFoundException('Shoes with provided id do not exist');
+        if(!shoes) throw new ShoesNotFoundException();
         
         const response: ShoesResponse = ShoesResponse.fromObject(shoes);
 
