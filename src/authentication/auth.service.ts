@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { InvalidPasswordException } from "src/common/exceptions/invalid-password.exception";
-import { UserNotFoundException } from "src/common/exceptions/user-not-found.exception";
-import { compareStringToHash } from "src/common/helpers/compare-string-to-hash";
-import { User } from "src/models/user/entities/user.entity";
-import { UsersService } from "src/models/user/users.service";
+import { InvalidPasswordException } from "../common/exceptions/invalid-password.exception";
+import { UserNotFoundException } from "../common/exceptions/user-not-found.exception";
+import { compareStringToHash } from "../common/helpers/compare-string-to-hash";
+import { User } from "../models/user/entities/user.entity";
+import { UsersService } from "../models/user/users.service";
 
 @Injectable()
 export class AuthService {

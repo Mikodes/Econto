@@ -15,3 +15,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+//TODO: Create create-user.sh 
