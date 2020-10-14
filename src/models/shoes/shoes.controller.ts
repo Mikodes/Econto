@@ -1,10 +1,16 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from '../../common/pipes/validation.pipe';
 import { ShoesNotFoundException } from '../../common/exceptions/shoes-not-found.exception';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
 import { UpdateShoesRequest } from './dtos/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
+import * as Joi from '@hapi/joi';
+
+const schema = Joi.object({
+    name: Joi.string().min(3).max(30).required()
+});
 
 @Controller('shoes')
 export class ShoesController {
@@ -30,6 +36,7 @@ export class ShoesController {
     }
 
     @Post()
+    @UsePipes(new ValidationPipe(schema))
     public async create(@Body() body: CreateShoesRequest): Promise<ShoesResponse> {
         const entity: Shoes = ShoesResponse.fromObject(body).toEntity();
         const shoes: Shoes = await this._shoesService.create(entity);
