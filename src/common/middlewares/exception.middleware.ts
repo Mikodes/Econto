@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from "@nestjs/common";
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger } from "@nestjs/common";
 import { Response } from 'express';
 
 @Catch()
@@ -11,10 +11,13 @@ export class ExceptionMiddleware implements ExceptionFilter {
         let message = 'Internal server error'
 
         if(exception instanceof HttpException) {
-            const status = exception.getStatus();
-            response.status(status).json({ message: exception.message });
+            status = exception.getStatus();
+            message = exception.message;
         }
 
         response.status(status).json({ message });
+        
+        if(exception instanceof Error) message = exception.message;
+        Logger.error(`Exception occured: ${message}`);
     }
 }
