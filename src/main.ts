@@ -15,3 +15,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+//TODO: Add interfaces instead of any (authentication)
