@@ -6,11 +6,7 @@ import { ShoesResponse } from './dtos/shoes.dto';
 import { UpdateShoesRequest } from './dtos/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
-import * as Joi from '@hapi/joi';
-
-const schema = Joi.object({
-    name: Joi.string().min(3).max(30).required()
-});
+import { CreateShoesSchema } from './schemas/create.schema';
 
 @Controller('shoes')
 export class ShoesController {
@@ -36,7 +32,7 @@ export class ShoesController {
     }
 
     @Post()
-    @UsePipes(new ValidationPipe(schema))
+    @UsePipes(new ValidationPipe(CreateShoesSchema))
     public async create(@Body() body: CreateShoesRequest): Promise<ShoesResponse> {
         const entity: Shoes = ShoesResponse.fromObject(body).toEntity();
         const shoes: Shoes = await this._shoesService.create(entity);
