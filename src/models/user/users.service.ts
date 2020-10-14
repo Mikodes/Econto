@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 
 @Injectable()
-export class UserService {
+export class UsersService {
     constructor(@InjectRepository(User) private readonly _userRepository: Repository<User>) { }
 
     public async getByUsername(username: string): Promise<User | null> {
