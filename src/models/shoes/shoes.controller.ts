@@ -1,10 +1,13 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from '../../common/pipes/validation.pipe';
 import { ShoesNotFoundException } from '../../common/exceptions/shoes-not-found.exception';
 import { CreateShoesRequest } from './dtos/create.dto';
 import { ShoesResponse } from './dtos/shoes.dto';
 import { UpdateShoesRequest } from './dtos/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
+import { CreateShoesSchema } from './schemas/create.schema';
+import { UpdateShoesSchema } from './schemas/update.schema';
 
 @Controller('shoes')
 export class ShoesController {
@@ -30,7 +33,7 @@ export class ShoesController {
     }
 
     @Post()
-    public async create(@Body() body: CreateShoesRequest): Promise<ShoesResponse> {
+    public async create(@Body(new ValidationPipe(CreateShoesSchema)) body: CreateShoesRequest): Promise<ShoesResponse> {
         const entity: Shoes = ShoesResponse.fromObject(body).toEntity();
         const shoes: Shoes = await this._shoesService.create(entity);
         const response = ShoesResponse.fromObject(shoes);
@@ -48,7 +51,7 @@ export class ShoesController {
     }
 
     @Patch('/:id')
-    public async updateById(@Param('id') id: string, @Body() body: UpdateShoesRequest): Promise<void> {
+    public async updateById(@Param('id') id: string, @Body(new ValidationPipe(UpdateShoesSchema)) body: UpdateShoesRequest): Promise<void> {
         const shoes: Shoes | null = await this._shoesService.getById(id);
 
         if(!shoes) throw new ShoesNotFoundException();
