@@ -6,7 +6,7 @@ import { AppConfigService } from './config/app/config.service';
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
-    const config: AppConfigService = app.get('AppConfigService');
+    const config: AppConfigService = app.get(AppConfigService);
     app.setGlobalPrefix(config.prefix);
 
     app.useGlobalFilters(new ExceptionMiddleware());

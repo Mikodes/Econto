@@ -42,7 +42,7 @@ export class ShoesController {
     public async deleteById(@Param('id') id: string): Promise<void> {
         const shoes: Shoes | null = await this._shoesService.getById(id);
 
-        if(!shoes) throw new NotFoundException('Shoes with provided id not found');
+        if(!shoes) throw new ShoesNotFoundException();
 
         await this._shoesService.deleteById(id);
     }
@@ -51,7 +51,7 @@ export class ShoesController {
     public async updateById(@Param('id') id: string, @Body() body: UpdateShoesRequest): Promise<void> {
         const shoes: Shoes | null = await this._shoesService.getById(id);
 
-        if(!shoes) throw new NotFoundException('Shoes with provided id not found');
+        if(!shoes) throw new ShoesNotFoundException();
 
         await this._shoesService.updateById(id, body);
     }
