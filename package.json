@@ -9,7 +9,7 @@
     "build": "nest build",
     "start": "nest start",
     "start:dev": "nodemon --config nodemon.json",
-    "start:dev:db": "bash ./src/scripts/start-db.sh --run_migration true",
+    "start:dev:db": "bash ./src/scripts/start-db.sh --run_migrations true",
     "start:dev:db:admin": "bash ./src/scripts/start-db-admin.sh",
     "seed:shoes": "ts-node -r tsconfig-paths/register src/database/seeders/shoes/seeder.ts",
     "start:debug": "nest start --debug --watch",
