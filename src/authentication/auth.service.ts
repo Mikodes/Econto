@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { InvalidPasswordException } from "src/common/exceptions/invalid-password.exception";
 import { UserNotFoundException } from "src/common/exceptions/user-not-found.exception";
 import { compareStringToHash } from "src/common/helpers/compare-string-to-hash";
 import { User } from "src/models/user/entities/user.entity";
@@ -13,6 +14,6 @@ export class AuthService  {
         if(!user) throw new UserNotFoundException();
 
         const isPasswordValid: boolean = await compareStringToHash(password, user.password);
-        if(!isPasswordValid) throw new 
+        if(!isPasswordValid) throw new InvalidPasswordException();
     }
 }
