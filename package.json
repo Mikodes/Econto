@@ -15,6 +15,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "pretypeorm": "rm -f ormconfig.json && ts-node -r tsconfig-paths/register src/database/utils/generate-orm-config.ts",
+    "orm": "ts-node -r tsconfig-paths/register src/database/utils/read-orm-config.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:migration:generate": "npm run typeorm -- migration:generate -n",
     "typeorm:migration:run": "npm run typeorm -- migration:run"
@@ -30,7 +31,6 @@
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
     "faker": "^5.1.0",
-    "lodash": "^4.17.20",
     "pg": "^8.4.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -45,7 +45,6 @@
     "@types/faker": "^5.1.2",
     "@types/hapi__joi": "^17.1.6",
     "@types/jest": "26.0.10",
-    "@types/lodash": "^4.14.162",
     "@types/node": "^13.9.1",
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "3.9.1",

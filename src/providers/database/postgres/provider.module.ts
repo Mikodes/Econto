@@ -7,13 +7,13 @@ import { PostgresConfigModule } from '../../../config/database/postgres/config.m
     imports: [
         TypeOrmModule.forRootAsync({
             imports: [PostgresConfigModule],
-            useFactory: async (postgresConfgiService: PostgresConfigService) => ({
+            useFactory: async (postgresConfigService: PostgresConfigService) => ({
                 type: 'postgres',
-                host: postgresConfgiService.host,
-                port: postgresConfgiService.port,
-                username: postgresConfgiService.user,
-                password: postgresConfgiService.password,
-                database: postgresConfgiService.databaseName,
+                host: postgresConfigService.host,
+                port: postgresConfigService.port,
+                username: postgresConfigService.user,
+                password: postgresConfigService.password,
+                database: postgresConfigService.databaseName,
                 entities: ['**/*.entity{.ts,.js}'],
                 migrationsTableName: 'migrations',
                 migrations: ['src/database/migrations/*.ts'],

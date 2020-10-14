@@ -9,9 +9,7 @@ export class ShoesService {
 
     public async getById(id: string): Promise<Shoes | null> {
         const shoesList: Shoes[] = await this.getAll();
-        const shoes: Shoes | null = shoesList.filter(shoe => shoe.id === id)[0];
-
-        return shoes;
+        return shoesList.filter(shoe => shoe.id === id)[0];
     }
 
     public async getAll(): Promise<Shoes[]> {
