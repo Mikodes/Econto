@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes } from '@nestjs/common';
 import { ValidationPipe } from '../../common/pipes/validation.pipe';
 import { ShoesNotFoundException } from '../../common/exceptions/shoes-not-found.exception';
-import { CreateShoesRequest } from './dtos/create.dto';
-import { ShoesResponse } from './dtos/shoes.dto';
-import { UpdateShoesRequest } from './dtos/update.dto';
+import { CreateShoesRequest } from './dto/create.dto';
+import { ShoesResponse } from './dto/shoes.dto';
+import { UpdateShoesRequest } from './dto/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
 import { CreateShoesSchema } from './schemas/create.schema';
