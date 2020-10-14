@@ -7,6 +7,7 @@ import { UpdateShoesRequest } from './dtos/update.dto';
 import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
 import { CreateShoesSchema } from './schemas/create.schema';
+import { UpdateShoesSchema } from './schemas/update.schema';
 
 @Controller('shoes')
 export class ShoesController {
@@ -32,8 +33,7 @@ export class ShoesController {
     }
 
     @Post()
-    @UsePipes(new ValidationPipe(CreateShoesSchema))
-    public async create(@Body() body: CreateShoesRequest): Promise<ShoesResponse> {
+    public async create(@Body(new ValidationPipe(CreateShoesSchema)) body: CreateShoesRequest): Promise<ShoesResponse> {
         const entity: Shoes = ShoesResponse.fromObject(body).toEntity();
         const shoes: Shoes = await this._shoesService.create(entity);
         const response = ShoesResponse.fromObject(shoes);
@@ -51,7 +51,7 @@ export class ShoesController {
     }
 
     @Patch('/:id')
-    public async updateById(@Param('id') id: string, @Body() body: UpdateShoesRequest): Promise<void> {
+    public async updateById(@Param('id') id: string, @Body(new ValidationPipe(UpdateShoesSchema)) body: UpdateShoesRequest): Promise<void> {
         const shoes: Shoes | null = await this._shoesService.getById(id);
 
         if(!shoes) throw new ShoesNotFoundException();
