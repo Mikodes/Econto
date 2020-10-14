@@ -11,4 +11,8 @@ export class UsersService {
         const users: User[] = await this._userRepository.find({ username });
         return users[0];
     }
+
+    public async create(user: User): Promise<User> {
+        return await this._userRepository.save(user);
+    }
 }
