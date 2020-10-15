@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
+import { hash } from 'bcrypt';
 
 export async function hashString(text: string): Promise<string> {
-    const hashedString: string = await bcrypt.hash(text, 12);
+    const hashedString: string = await hash(text, 12);
     return hashedString;
 }

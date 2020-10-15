@@ -12,6 +12,7 @@
     "start:dev:db": "bash ./src/scripts/start-db.sh --run_migrations true",
     "start:dev:db:admin": "bash ./src/scripts/start-db-admin.sh",
     "seed:shoes": "ts-node -r tsconfig-paths/register src/database/seeders/shoes/seeder.ts",
+    "create-user-account": "ts-node -r tsconfig-paths/register src/database/utils/create-user-account.ts",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "pretypeorm": "rm -f ormconfig.json && ts-node -r tsconfig-paths/register src/database/utils/generate-orm-config.ts",

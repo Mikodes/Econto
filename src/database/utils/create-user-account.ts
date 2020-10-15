@@ -1,6 +1,6 @@
 import { User } from "../../models/user/entities/user.entity";
 import { UsersService } from "../../models/user/users.service";
-import { Connection, ConnectionOptions, createConnection } from "typeorm";
+import { ConnectionOptions, createConnection } from "typeorm";
 import { getOrmConfig } from "./read-orm-config";
 import { UserResponse } from "../../models/user/dto/user.dto";
 import { random } from 'faker';
@@ -8,25 +8,62 @@ import { hashString } from "src/common/helpers/hash-string";
 import { green } from 'chalk';
 import { sleep } from "src/common/helpers/sleep";
 
-async function run(): Promise<void> {
-    const connection: Connection = await createConnection(getOrmConfig() as ConnectionOptions);
-    const usersService: UsersService = new UsersService(connection.getRepository(User));
+generateUserAccount();
 
-    const dto: UserResponse = UserResponse.fromObject(generateUser());
-    const entityWithHashedPassword: User = { ...dto.toEntity(), password: await hashString(dto.password) };
+async function generateUserAccount(): Promise<void> {
+    const connectionOptions = getOrmConfig() as ConnectionOptions;
+    const connection = await createConnection(connectionOptions);
 
-    await usersService.create(entityWithHashedPassword);
-    console.log(green('User generated successfully'));
+    const repository = connection.getRepository(User);
+    const usersService = new UsersService(repository);
 
-    sleep(1500);
-    console.log(dto);
+    await new UserAccountGenerator(usersService).run();
 }
 
-function generateUser(): Partial<UserResponse> {
-    return {
-        username: random.word(),
-        password: random.word()
-    };
-}
+class UserAccountGenerator {
+    public constructor(private readonly _usersService: UsersService) {}
 
-run();
+    public async run(): Promise<void> {
+        const userCredentials = this.generateFakeCredentials();
+
+        const userEntity = this.createEntityFromFakeData(userCredentials);
+
+        const userEntityWithHashedPassword = await this.getUserEntityWithHashedPassword(userEntity);
+
+        await this._usersService.create(userEntityWithHashedPassword);
+
+        await this.printCredentialsAfterSleep(userEntity);
+    }
+    
+    private generateFakeCredentials(): Partial<UserResponse> {
+        return {
+            username: random.word(),
+            password: random.word()
+        };
+    }
+
+    private createEntityFromFakeData(generatedUser: Partial<UserResponse>): User {
+        const userResponse = UserResponse.fromObject(generatedUser);
+        const entity = userResponse.toEntity();
+
+        return entity;
+    }
+
+    private async getUserEntityWithHashedPassword(userEntity: User): Promise<User> {
+        const hashedPassword = await hashString(userEntity.password);
+        const userEntityWithHashedPassword = { ...userEntity, password: hashedPassword };
+
+        return userEntityWithHashedPassword;
+    }
+    
+    private async printCredentialsAfterSleep(entity: User): Promise<void> {
+        console.log(green('User generated successfully'));
+    
+        await sleep(1500);
+    
+        console.log({
+            username: entity.username,
+            password: entity.password
+        });
+    }
+}
