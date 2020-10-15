@@ -4,7 +4,7 @@ import { Color, Gender } from "src/common/constants";
 import { Connection, ConnectionOptions, createConnection } from "typeorm";
 import { getOrmConfig } from "src/database/utils/read-orm-config";
 import { ShoesService } from "src/models/shoes/shoes.service";
-import { ShoesResponse } from "src/models/shoes/dtos/shoes.dto";
+import { ShoesResponse } from "src/models/shoes/dto/shoes.dto";
 import yargs from 'yargs';
 import { red, green } from 'chalk';
 

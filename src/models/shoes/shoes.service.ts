@@ -17,14 +17,14 @@ export class ShoesService {
     }
 
     public async create(shoes: Shoes): Promise<Shoes> {
-        return this._shoesRepository.save(shoes);
+        return await this._shoesRepository.save(shoes);
     }
 
     public async deleteById(id: string): Promise<void> {
-        this._shoesRepository.delete({ id });
+        await this._shoesRepository.delete({ id });
     }
 
     public async updateById(id: string, shoes: Partial<Shoes>): Promise<void> {
-        this._shoesRepository.update({ id }, shoes);
+        await this._shoesRepository.update({ id }, shoes);
     }
 }

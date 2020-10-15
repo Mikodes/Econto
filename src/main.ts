@@ -15,3 +15,6 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+//TODO: Convert create-user-account.ts into class and repair input (id: undefined)
+//TODO: Create loginRequest and loginResponse (dto)

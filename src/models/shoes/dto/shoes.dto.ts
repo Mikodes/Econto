@@ -1,5 +1,5 @@
 import { IsEnum, IsNumber, IsString, IsUUID } from "class-validator";
-import { assignObject } from "../../../common/utils";
+import { assignObject } from "../../../common/helpers/assign-object";
 import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
 
