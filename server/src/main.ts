@@ -16,4 +16,4 @@ async function bootstrap() {
 
 bootstrap();
 
-//TODO: Create base.dto.ts in shoes model
+//TODO: Create BaseSeeder and inherit ShoesSeeder etc.

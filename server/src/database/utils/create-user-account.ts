@@ -35,7 +35,7 @@ class UserAccountGenerator {
         await this.printCredentialsAfterSleep(userEntity);
     }
     
-    private generateFakeCredentials(): Partial<UserResponse> {
+    private generateFakeCredentials(): Partial<User> {
         return {
             username: random.alphaNumeric(5),
             password: random.alphaNumeric(5)
