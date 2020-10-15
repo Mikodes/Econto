@@ -15,7 +15,7 @@ run()
 async function run(): Promise<void> {
     const amount: number = getAmountParameter();
 
-    const connection: Connection = await createConnection(getOrmConfig() as ConnectionOptions);
+    const connection: Connection = await createConnection(getOrmConfig());
     const shoesService: ShoesService = new ShoesService(connection.getRepository(Shoes));
 
     for(let i = 0; i < amount; i++) {

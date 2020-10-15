@@ -1,6 +1,7 @@
 import fs = require('fs');
+import { ConnectionOptions } from 'typeorm';
 
-export function getOrmConfig(): Record<string, string | number | boolean> {
+export function getOrmConfig(): ConnectionOptions {
     const config = fs.readFileSync('ormconfig.json', { encoding: 'utf8', flag: 'r' });
     const parsedConfig = JSON.parse(config);
 
