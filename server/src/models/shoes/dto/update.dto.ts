@@ -1,15 +1,3 @@
-import { Color, Gender } from "../../../common/constants";
+import { BaseShoesDto } from "./base.dto";
 
-export class UpdateShoesRequest implements Readonly<UpdateShoesRequest> {
-    name: string;
-
-    price: number;
-
-    brand: string;
-
-    size: number;
-
-    color: Color;
-
-    gender: Gender;
-}
+export class UpdateShoesRequest extends BaseShoesDto {}

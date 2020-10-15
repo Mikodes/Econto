@@ -1,21 +1,9 @@
 import { assignObject } from "../../../common/helpers/assign-object";
-import { Color, Gender } from "../../../common/constants";
 import { Shoes } from "../entities/shoes.entity";
+import { BaseShoesDto } from "./base.dto";
 
-export class ShoesResponse implements Readonly<ShoesResponse> {
+export class ShoesResponse extends BaseShoesDto implements Readonly<ShoesResponse> {
     id: string;
-
-    name: string;
-
-    price: number;
-
-    brand: string;
-
-    size: number;
-
-    color: Color;
-
-    gender: Gender;
     
     public static fromObject(object: Partial<ShoesResponse>): ShoesResponse {
         const shoesResponse = new ShoesResponse();
