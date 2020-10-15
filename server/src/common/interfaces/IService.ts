@@ -7,5 +7,5 @@ export interface IService<T> {
 
     deleteById(id: string): Promise<void>;
 
-    updateById(id: string, shoes: Partial<T>): Promise<T>;
+    updateById(id: string, shoes: Partial<T>): Promise<void>;
 }
