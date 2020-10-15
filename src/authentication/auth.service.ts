@@ -5,6 +5,7 @@ import { UserNotFoundException } from "../common/exceptions/user-not-found.excep
 import { compareStringToHash } from "../common/helpers/compare-string-to-hash";
 import { User } from "../models/user/entities/user.entity";
 import { UsersService } from "../models/user/users.service";
+import { LoginResponse } from "./dto/login.dto";
 
 @Injectable()
 export class AuthService {
@@ -20,9 +21,10 @@ export class AuthService {
         return user;
     }
 
-    public login(user: User): { accessToken: string } {
+    public login(user: Partial<User>): LoginResponse {
         const payload = { username: user.username, id: user.id };
+        const response = { accessToken: this._jwtService.sign(payload) }
 
-        return { accessToken: this._jwtService.sign(payload) }
+        return response;
     }
 }
