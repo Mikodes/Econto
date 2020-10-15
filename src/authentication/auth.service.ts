@@ -10,12 +10,14 @@ import { UsersService } from "../models/user/users.service";
 export class AuthService {
     constructor(private readonly _usersService: UsersService, private readonly _jwtService: JwtService) {}
 
-    public async validateUser(username: string, password: string): Promise<void> {
+    public async validateUser(username: string, password: string): Promise<User> {
         const user: User = await this._usersService.getByUsername(username);
         if(!user) throw new UserNotFoundException();
 
         const isPasswordValid: boolean = await compareStringToHash(password, user.password);
         if(!isPasswordValid) throw new InvalidPasswordException();
+
+        return user;
     }
 
     public login(user: User): { accessToken: string } {

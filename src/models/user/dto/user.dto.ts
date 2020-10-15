@@ -9,9 +9,6 @@ export class UserResponse implements Readonly<UserResponse> {
     @IsString()
     username: string;
 
-    @IsString()
-    password: string;
-    
     public static fromObject(object: Partial<UserResponse>): UserResponse {
         const userResponse = new UserResponse();
 
@@ -29,4 +26,4 @@ export class UserResponse implements Readonly<UserResponse> {
     }
 }
 
-const FIELDS: string[] = ['id', 'username', 'password'];
+const FIELDS: string[] = ['id', 'username'];
