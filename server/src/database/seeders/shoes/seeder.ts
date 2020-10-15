@@ -25,7 +25,9 @@ async function run(): Promise<void> {
 }
 
 function getAmountParameter(): number {
-    const args = yargs(process.env as any).argv;
+    const environmentVariables: unknown = process.env;
+
+    const args = yargs(environmentVariables as string[]).argv;
     const amount: number | undefined = args.amount as number | undefined;
 
     if(amount === undefined) throw new Error('You need to specify the amount parameter by adding -- --amount=x to your script');
