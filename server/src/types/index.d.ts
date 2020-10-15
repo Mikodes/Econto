@@ -1,8 +1,10 @@
 declare namespace Express {
     export interface Request {
-        user?: {
-            id: string;
-            username: string;
-        }
+        user?: IUserPaylaod
     }
+}
+
+export interface IUserPaylaod {
+    id: string;
+    username: string;
 }
