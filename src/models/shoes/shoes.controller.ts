@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { ValidationPipe } from '../../common/pipes/validation.pipe';
 import { ShoesNotFoundException } from '../../common/exceptions/shoes-not-found.exception';
 import { CreateShoesRequest } from './dto/create.dto';
@@ -8,8 +8,10 @@ import { Shoes } from './entities/shoes.entity';
 import { ShoesService } from './shoes.service';
 import { CreateShoesSchema } from './schemas/create.schema';
 import { UpdateShoesSchema } from './schemas/update.schema';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @Controller('shoes')
+@UseGuards(JwtAuthGuard)
 export class ShoesController {
     constructor(private readonly _shoesService: ShoesService) { }
 
