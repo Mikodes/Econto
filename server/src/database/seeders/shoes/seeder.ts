@@ -15,7 +15,7 @@ run()
 async function run(): Promise<void> {
     const amount: number = getAmountParameter();
 
-    const connection: Connection = await createConnection(getOrmConfig() as ConnectionOptions);
+    const connection: Connection = await createConnection(getOrmConfig());
     const shoesService: ShoesService = new ShoesService(connection.getRepository(Shoes));
 
     for(let i = 0; i < amount; i++) {
@@ -25,7 +25,9 @@ async function run(): Promise<void> {
 }
 
 function getAmountParameter(): number {
-    const args = yargs(process.env as any).argv;
+    const environmentVariables: unknown = process.env;
+
+    const args = yargs(environmentVariables as string[]).argv;
     const amount: number | undefined = args.amount as number | undefined;
 
     if(amount === undefined) throw new Error('You need to specify the amount parameter by adding -- --amount=x to your script');

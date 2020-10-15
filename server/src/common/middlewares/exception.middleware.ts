@@ -4,7 +4,7 @@ import { BaseException } from "../exceptions/base.exception";
 
 @Catch()
 export class ExceptionMiddleware implements ExceptionFilter {
-    catch(exception: unknown, host: ArgumentsHost) {
+    catch(exception: unknown, host: ArgumentsHost): void {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
 
