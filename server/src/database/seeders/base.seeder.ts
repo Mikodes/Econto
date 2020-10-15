@@ -30,7 +30,7 @@ export abstract class BaseSeeder<T> {
         if(left === 0) return;
 
         const fakeData = this.generateFakeEntityData();
-        const entity = this.createEntityFromFakedData(fakeData);
+        const entity = this.createEntityFromFakeData(fakeData);
 
         await this.saveEntityInDatabase(entity);
         await this.makeEntities(--left);
@@ -44,7 +44,7 @@ export abstract class BaseSeeder<T> {
         await this._entityService.create(entity);
     }
 
-    public abstract createEntityFromFakedData(fakeData: Partial<T>): T
+    public abstract createEntityFromFakeData(fakeData: Partial<T>): T
 
     public abstract generateFakeEntityData(): Partial<T>
 }

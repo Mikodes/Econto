@@ -16,4 +16,4 @@ async function bootstrap() {
 
 bootstrap();
 
-//TODO: Create BaseSeeder and inherit ShoesSeeder etc.
+//TODO: Create IDto<T>
