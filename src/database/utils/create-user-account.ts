@@ -37,8 +37,8 @@ class UserAccountGenerator {
     
     private generateFakeCredentials(): Partial<UserResponse> {
         return {
-            username: random.word(),
-            password: random.word()
+            username: random.alphaNumeric(5),
+            password: random.alphaNumeric(5)
         };
     }
 
