@@ -13,7 +13,7 @@ export abstract class BaseSeeder<T> {
         this.printSuccessMessage();
     }
 
-    public getAmountFromParameters(): number {
+    protected getAmountFromParameters(): number {
         const environmentVariables: unknown = process.env;
         const parameters = yargs(environmentVariables as string[]).argv;
         
@@ -26,7 +26,7 @@ export abstract class BaseSeeder<T> {
         return amount;
     }
 
-    public async makeEntities(left: number): Promise<void> {
+    protected async makeEntities(left: number): Promise<void> {
         if(left === 0) return;
 
         const fakeData = this.generateFakeEntityData();
@@ -36,15 +36,15 @@ export abstract class BaseSeeder<T> {
         await this.makeEntities(--left);
     }
 
-    public printSuccessMessage(): void {
+    protected printSuccessMessage(): void {
         console.log(green('Seeding completed successfully'));
     }
 
-    public async saveEntityInDatabase(entity: T): Promise<void> {
+    protected async saveEntityInDatabase(entity: T): Promise<void> {
         await this._entityService.create(entity);
     }
 
-    public abstract createEntityFromFakeData(fakeData: Partial<T>): T
+    protected abstract createEntityFromFakeData(fakeData: Partial<T>): T
 
-    public abstract generateFakeEntityData(): Partial<T>
+    protected abstract generateFakeEntityData(): Partial<T>
 }

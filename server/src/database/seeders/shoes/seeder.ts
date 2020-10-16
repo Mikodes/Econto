@@ -8,28 +8,26 @@ import { BaseSeeder } from "../base.seeder";
 import { RepositoryGetter } from "../../utils/repository-getter";
 import { Repository } from "typeorm";
 
-generateSeed();
-
-async function generateSeed(): Promise<void> {
-    const repository = await new RepositoryGetter().getRepository(Entity.SHOES);
-    const shoesService = new ShoesService(repository as Repository<Shoes>);
-
-    const seeder = new ShoesSeeder(shoesService);
-
-    await seeder
-        .run()
-        .catch((error) => console.log(red(error.message)));       
-}
-
 class ShoesSeeder extends BaseSeeder<Shoes> {
-    public createEntityFromFakeData(generatedShoes: Partial<Shoes>): Shoes {
+    public static async generateSeed(): Promise<void> {
+        const repository = await new RepositoryGetter().getRepository(Entity.SHOES);
+        const shoesService = new ShoesService(repository as Repository<Shoes>);
+
+        const seeder = new ShoesSeeder(shoesService);
+
+        await seeder
+            .run()
+            .catch((error) => console.log(red(error.message)));  
+    }
+
+    protected createEntityFromFakeData(generatedShoes: Partial<Shoes>): Shoes {
         const shoesDto = ShoesResponse.fromObject(generatedShoes);
         const entity = shoesDto.toEntity();
 
         return entity;
     }
 
-    public generateFakeEntityData(): Partial<Shoes> {
+    protected generateFakeEntityData(): Partial<Shoes> {
         return {
             name: random.word(),
             price: random.number(1000),
@@ -40,3 +38,5 @@ class ShoesSeeder extends BaseSeeder<Shoes> {
         };
     }
 }
+
+ShoesSeeder.generateSeed();
