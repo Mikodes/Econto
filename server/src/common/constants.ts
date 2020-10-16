@@ -12,3 +12,8 @@ export enum Color {
     GREEN = 'green',
     BLUE = 'blue'
 }
+
+export enum Entity {
+    SHOES,
+    USER
+}

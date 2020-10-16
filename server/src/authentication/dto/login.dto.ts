@@ -1,8 +1,6 @@
-import { IsString } from "class-validator";
 import { assignObject } from "../../common/helpers/assign-object";
 
 export class LoginResponse {
-    @IsString()
     accessToken: string;
 
     public static fromObject(object: Partial<LoginResponse>): LoginResponse {

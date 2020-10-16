@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { IService } from 'src/common/interfaces/IService';
 import { Repository } from 'typeorm';
 import { Shoes } from './entities/shoes.entity';
 
 @Injectable()
-export class ShoesService {
+export class ShoesService implements IService<Shoes> {
     constructor(@InjectRepository(Shoes) private readonly _shoesRepository: Repository<Shoes>) { }
 
     public async getById(id: string): Promise<Shoes | null> {

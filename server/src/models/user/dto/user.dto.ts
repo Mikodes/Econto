@@ -1,12 +1,9 @@
-import { IsString, IsUUID } from "class-validator";
 import { assignObject } from "../../../common/helpers/assign-object";
 import { User } from "../entities/user.entity";
 
 export class UserResponse implements Readonly<UserResponse> {
-    @IsUUID()
     id: string;
 
-    @IsString()
     username: string;
 
     public static fromObject(object: Partial<UserResponse>): UserResponse {
@@ -26,4 +23,4 @@ export class UserResponse implements Readonly<UserResponse> {
     }
 }
 
-const FIELDS: string[] = ['id', 'username'];
+const FIELDS: string[] = ['id', 'username', 'password'];

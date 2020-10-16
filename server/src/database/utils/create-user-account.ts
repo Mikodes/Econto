@@ -1,29 +1,25 @@
 import { User } from "../../models/user/entities/user.entity";
 import { UsersService } from "../../models/user/users.service";
-import { ConnectionOptions, createConnection } from "typeorm";
-import { getOrmConfig } from "./read-orm-config";
+import { Repository } from "typeorm";
 import { UserResponse } from "../../models/user/dto/user.dto";
 import { random } from 'faker';
-import { hashString } from "src/common/helpers/hash-string";
+import { hashString } from "../../common/helpers/hash-string";
 import { green } from 'chalk';
-import { sleep } from "src/common/helpers/sleep";
-
-generateUserAccount();
-
-async function generateUserAccount(): Promise<void> {
-    const connectionOptions = getOrmConfig() as ConnectionOptions;
-    const connection = await createConnection(connectionOptions);
-
-    const repository = connection.getRepository(User);
-    const usersService = new UsersService(repository);
-
-    await new UserAccountGenerator(usersService).run();
-}
+import { sleep } from "../../common/helpers/sleep";
+import { RepositoryGetter } from "./repository-getter";
+import { Entity } from "../../common/constants";
 
 class UserAccountGenerator {
     public constructor(private readonly _usersService: UsersService) {}
 
-    public async run(): Promise<void> {
+    public static async generateUserAccount(): Promise<void> {
+        const repository = await new RepositoryGetter().getRepository(Entity.USER);
+        const service = new UsersService(repository as Repository<User>);
+
+        await new UserAccountGenerator(service).run();
+    }
+
+    private async run(): Promise<void> {
         const userCredentials = this.generateFakeCredentials();
 
         const userEntity = this.createEntityFromFakeData(userCredentials);
@@ -35,7 +31,7 @@ class UserAccountGenerator {
         await this.printCredentialsAfterSleep(userEntity);
     }
     
-    private generateFakeCredentials(): Partial<UserResponse> {
+    private generateFakeCredentials(): Partial<User> {
         return {
             username: random.alphaNumeric(5),
             password: random.alphaNumeric(5)
@@ -67,3 +63,5 @@ class UserAccountGenerator {
         });
     }
 }
+
+UserAccountGenerator.generateUserAccount();
