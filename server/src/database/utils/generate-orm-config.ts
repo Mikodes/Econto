@@ -1,7 +1,5 @@
 import fs = require('fs');
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import config from '../../config';
 
 class OrmConfigGenerator {
     public generateOrmConfig(): void {
@@ -23,12 +21,12 @@ class OrmConfigGenerator {
 
     private getOptionsFromEnvironmentVariables() {
         return {
-            ssl: process.env.APP_MODE === 'production' ? true : false,
-            host: process.env.POSTGRES_HOST,
-            port: process.env.POSTGRES_PORT,
-            username: process.env.POSTGRES_USER,
-            password: process.env.POSTGRES_PASSWORD,
-            database: process.env.POSTGRES_DATABASE_NAME
+            ssl: config.APP.MODE === 'production' ? true : false,
+            host: config.DATABASE.HOST,
+            port: config.DATABASE.PORT,
+            username: config.DATABASE.USER,
+            password: config.DATABASE.PASSWORD,
+            database: config.DATABASE.NAME
         }
     }
 }

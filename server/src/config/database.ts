@@ -1,3 +1,7 @@
+import { config } from 'dotenv';
+
+config();
+
 export default {
     NAME: process.env.POSTGRES_DATABASE_NAME  || 'main',
     HOST: process.env.POSTGRES_HOST || '127.0.0.1',
