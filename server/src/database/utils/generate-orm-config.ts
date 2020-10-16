@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-class ConfigGenerator {
+class OrmConfigGenerator {
     public generateOrmConfig(): void {
         fs.writeFileSync('ormconfig.json', JSON.stringify({
             ...this.getOptionsFromEnvironmentVariables(),
@@ -33,4 +33,4 @@ class ConfigGenerator {
     }
 }
 
-new ConfigGenerator().generateOrmConfig();
+new OrmConfigGenerator().generateOrmConfig();

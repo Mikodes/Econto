@@ -1,7 +1,7 @@
 import { Shoes } from "../../models/shoes/entities/shoes.entity";
 import { User } from "../../models/user/entities/user.entity";
 import { Connection, ConnectionOptions, createConnection, Repository } from "typeorm";
-import { getOrmConfig } from "./read-orm-config";
+import { OrmConfigReader } from "./read-orm-config";
 import { Entity } from "../../common/constants";
 import { TEntity } from "src/types";
 
@@ -23,7 +23,7 @@ export class RepositoryGetter {
     }
 
     private async initiateConnection(): Promise<Connection> {
-        const connectionOptions = getOrmConfig() as ConnectionOptions;
+        const connectionOptions = new OrmConfigReader().getOrmConfig() as ConnectionOptions;
         const connection = await createConnection(connectionOptions);
 
         return connection;
