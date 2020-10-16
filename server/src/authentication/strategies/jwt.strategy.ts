@@ -4,10 +4,11 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 import { IUserPaylaod } from "../../types";
 import { UserResponse } from "../../models/user/dto/user.dto";
 import config from '../../config';
+import { AuthService } from "../auth.service";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-    public constructor() {
+    public constructor(private readonly _authService: AuthService) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
@@ -15,10 +16,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
-    public async validate(payload: IUserPaylaod): Promise<UserResponse> {
+    public async validate(user: IUserPaylaod): Promise<UserResponse> {
+        await this._authService.checkIfUserExistsInDatabase(user.username);
+
         return UserResponse.fromObject({
-            id: payload.id,
-            username: payload.username
+            id: user.id,
+            username: user.username
         });
     }
 }

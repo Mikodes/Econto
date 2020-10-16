@@ -27,4 +27,10 @@ export class AuthService {
 
         return response;
     }
+
+    public async checkIfUserExistsInDatabase(username: string): Promise<void> {
+        const user = await this._usersService.getByUsername(username);
+    
+        if(!user) throw new UserNotFoundException();
+    }
 }
