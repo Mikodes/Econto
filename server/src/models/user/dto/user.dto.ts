@@ -23,4 +23,4 @@ export class UserResponse implements Readonly<UserResponse> {
     }
 }
 
-const FIELDS: string[] = ['id', 'username'];
+const FIELDS: string[] = ['id', 'username', 'password'];

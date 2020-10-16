@@ -11,9 +11,9 @@ import { Repository } from "typeorm";
 class ShoesSeeder extends BaseSeeder<Shoes> {
     public static async generateSeed(): Promise<void> {
         const repository = await new RepositoryGetter().getRepository(Entity.SHOES);
-        const shoesService = new ShoesService(repository as Repository<Shoes>);
+        const service = new ShoesService(repository as Repository<Shoes>);
 
-        const seeder = new ShoesSeeder(shoesService);
+        const seeder = new ShoesSeeder(service);
 
         await seeder
             .run()

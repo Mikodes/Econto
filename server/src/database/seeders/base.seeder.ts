@@ -3,9 +3,9 @@ import { green } from 'chalk';
 import yargs from 'yargs';
 
 export abstract class BaseSeeder<T> {
-    public constructor(private readonly _entityService: IService<T>) {}
+    protected constructor(private readonly _entityService: IService<T>) {}
 
-    public async run(): Promise<void> {
+    protected async run(): Promise<void> {
         const amount = this.getAmountFromParameters();
 
         await this.makeEntities(amount);
