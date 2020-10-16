@@ -1,19 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExceptionMiddleware } from './common/middlewares/exception.middleware';
-import { AppConfigService } from './config/app/config.service';
+import { ConfigValidator } from './common/utils/config-validator';
+import config from './config';
 
 async function bootstrap() {
+    if(!await new ConfigValidator().validate()) return;
+
     const app = await NestFactory.create(AppModule);
 
-    const config: AppConfigService = app.get(AppConfigService);
-    app.setGlobalPrefix(config.prefix);
+    app.setGlobalPrefix(config.APP.PREFIX);
 
     app.useGlobalFilters(new ExceptionMiddleware());
 
-    await app.listen(config.port);
+    await app.listen(config.APP.PORT);
 }
 
 bootstrap();
-
-//TODO: Transform functions to classes except helpers
