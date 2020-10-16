@@ -3,12 +3,14 @@ import { red } from 'chalk';
 import config from '../../config';
 
 export class ConfigValidator {
-    public validate(): boolean {
+    public async validate(): Promise<boolean> {
         try {
             const validationSchema = this.getValidationSchema();
-            validationSchema.validate(config);
+            await validationSchema.validateAsync(config);
+
+            return true;
         } catch(error) {
-            this.printErrorMessage(error);
+            this.printErrorMessage(error.message);
             return false;
         }
     }
@@ -24,8 +26,8 @@ export class ConfigValidator {
                 SECRET: string().min(10)
             },
             DATABASE: {
-                DATABASE_NAME: string().min(1),
-                DATABASE_HOST: string().ip(),
+                NAME: string().min(1),
+                HOST: string().ip(),
                 PASSWORD: string().min(1),
                 PORT: number().min(80).max(10000),
                 USER: string().min(1)
@@ -34,6 +36,6 @@ export class ConfigValidator {
     }
 
     private printErrorMessage(message: string): void {
-        console.log(red(message));
+        console.log(red(`Environment variable error: ${message}`));
     }
 }

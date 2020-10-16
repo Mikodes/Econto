@@ -1,9 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExceptionMiddleware } from './common/middlewares/exception.middleware';
+import { ConfigValidator } from './common/utils/config-validator';
 import { AppConfigService } from './config/app/config.service';
 
 async function bootstrap() {
+    if(!await new ConfigValidator().validate()) return;
+
     const app = await NestFactory.create(AppModule);
 
     const config: AppConfigService = app.get(AppConfigService);
@@ -16,4 +19,4 @@ async function bootstrap() {
 
 bootstrap();
 
-//TODO: Create global config and implement config validator
+//TODO: Replace old config by new one
