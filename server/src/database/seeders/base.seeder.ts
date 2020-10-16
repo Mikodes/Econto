@@ -16,7 +16,7 @@ export abstract class BaseSeeder<T> {
     public getAmountFromParameters(): number {
         const environmentVariables: unknown = process.env;
         const parameters = yargs(environmentVariables as string[]).argv;
-
+        
         const amount = parameters.amount;
 
         if(amount === undefined) throw new Error('You need to specify the amount parameter by adding -- --amount=x to your script');

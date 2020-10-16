@@ -14,14 +14,12 @@ async function generateSeed(): Promise<void> {
     const connectionOptions = getOrmConfig() as ConnectionOptions;
     const connection = await createConnection(connectionOptions);
 
-    const ss: typeof ShoesResponse = ShoesResponse;
-
     const repository = connection.getRepository(Shoes);
     const shoesService = new ShoesService(repository);
 
-    const seedGenerator = new ShoesSeeder(shoesService);
+    const seeder = new ShoesSeeder(shoesService);
 
-    await seedGenerator
+    await seeder
         .run()
         .catch((error) => console.log(red(error.message)));       
 }
