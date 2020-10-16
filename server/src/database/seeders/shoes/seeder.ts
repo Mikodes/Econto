@@ -1,21 +1,18 @@
-import { Shoes } from "src/models/shoes/entities/shoes.entity";
+import { Shoes } from "../../../models/shoes/entities/shoes.entity";
 import { random } from 'faker';
-import { Color, Gender } from "src/common/constants";
-import { ConnectionOptions, createConnection } from "typeorm";
-import { getOrmConfig } from "src/database/utils/read-orm-config";
-import { ShoesService } from "src/models/shoes/shoes.service";
-import { ShoesResponse } from "src/models/shoes/dto/shoes.dto";
+import { Color, Entity, Gender } from "../../../common/constants";
+import { ShoesService } from "../../../models/shoes/shoes.service";
+import { ShoesResponse } from "../../../models/shoes/dto/shoes.dto";
 import { red } from 'chalk';
 import { BaseSeeder } from "../base.seeder";
+import { RepositoryGetter } from "../../utils/repository-getter";
+import { Repository } from "typeorm";
 
 generateSeed();
 
 async function generateSeed(): Promise<void> {
-    const connectionOptions = getOrmConfig() as ConnectionOptions;
-    const connection = await createConnection(connectionOptions);
-
-    const repository = connection.getRepository(Shoes);
-    const shoesService = new ShoesService(repository);
+    const repository = await new RepositoryGetter().getRepository(Entity.SHOES);
+    const shoesService = new ShoesService(repository as Repository<Shoes>);
 
     const seeder = new ShoesSeeder(shoesService);
 
