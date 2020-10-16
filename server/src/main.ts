@@ -16,4 +16,4 @@ async function bootstrap() {
 
 bootstrap();
 
-//TODO: Transform functions to classes except helpers
+//TODO: Create global config and implement config validator
