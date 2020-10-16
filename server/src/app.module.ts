@@ -5,7 +5,7 @@ import { AppConfigModule } from './config/app/config.module';
 import { AuthConfigModule } from './config/auth/config.module';
 import { PostgresConfigModule } from './config/database/postgres/config.module';
 import { ShoesModule } from './models/shoes/shoes.module';
-import { PostgresDatabaseProviderModule } from './providers/database/postgres/provider.module';
+import { PostgresDatabaseProviderModule } from './providers/database/provider.module';
 
 @Module({
     imports: [
