@@ -17,4 +17,3 @@ async function bootstrap() {
 bootstrap();
 
 //TODO: Transform functions to classes except helpers
-//TOOD: Transform methods to private in seeder.ts, basee.seeder.ts nad create-user-account

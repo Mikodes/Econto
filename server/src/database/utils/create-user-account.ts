@@ -1,7 +1,6 @@
 import { User } from "../../models/user/entities/user.entity";
 import { UsersService } from "../../models/user/users.service";
-import { ConnectionOptions, createConnection, Repository } from "typeorm";
-import { getOrmConfig } from "./read-orm-config";
+import { Repository } from "typeorm";
 import { UserResponse } from "../../models/user/dto/user.dto";
 import { random } from 'faker';
 import { hashString } from "../../common/helpers/hash-string";
