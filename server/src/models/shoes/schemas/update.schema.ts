@@ -1,3 +1,4 @@
-import { CreateShoesSchema } from './create.schema';
+import { object } from '@hapi/joi';
+import { BaseShoesSchema } from './base.schema';
 
-export const UpdateShoesSchema = CreateShoesSchema;
+export const UpdateShoesSchema = object({ ...BaseShoesSchema });
