@@ -1,5 +1,5 @@
 import { string, number } from '@hapi/joi';
-import { Color, Style } from '../../../common/constants';
+import { Color } from '../../../common/constants';
 
 export const BaseBagSchema = {
     name: string().min(1).max(32).required(),
