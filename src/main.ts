@@ -17,3 +17,5 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+//TODO: Move seeders to one directory

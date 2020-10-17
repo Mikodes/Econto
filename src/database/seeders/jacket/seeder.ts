@@ -1,6 +1,6 @@
 import { Jacket } from "../../../models/jacket/entities/jacket.entity";
 import { random } from 'faker';
-import { Color, Entity, Gender, Style } from "../../../common/constants";
+import { Color, Entity, Style } from "../../../common/constants";
 import { JacketsService } from "../../../models/jacket/jackets.service";
 import { JacketResponse } from "../../../models/jacket/dto/jacket.dto";
 import { red } from 'chalk';
