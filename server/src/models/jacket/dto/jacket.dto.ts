@@ -1,25 +1,25 @@
 import { assignObject } from "../../../common/helpers/assign-object";
 import { Jacket } from "../entities/jacket.entity";
-import { BaseShoesDto } from "./base.dto";
+import { BaseJacketDto } from "./base.dto";
 
-export class JacketResponse extends BaseShoesDto implements Readonly<ShoesResponse> {
+export class JacketResponse extends BaseJacketDto implements Readonly<JacketResponse> {
     id: string;
     
-    public static fromObject(object: Partial<ShoesResponse>): ShoesResponse {
-        const shoesResponse = new ShoesResponse();
+    public static fromObject(object: Partial<JacketResponse>): JacketResponse {
+        const jacketResponse = new JacketResponse();
 
-        assignObject<ShoesResponse>(shoesResponse, object, FIELDS);
+        assignObject<JacketResponse>(jacketResponse, object, FIELDS);
 
-        return shoesResponse;
+        return jacketResponse;
     }
 
-    public toEntity(): Shoes {
-        const entity = new Shoes();
+    public toEntity(): Jacket {
+        const entity = new Jacket();
 
-        assignObject<Shoes>(entity, this, FIELDS);
+        assignObject<Jacket>(entity, this, FIELDS);
 
         return entity;
     }
 }
 
-const FIELDS: string[] = ['id', 'name', 'price', 'brand', 'size', 'color', 'gender'];
+const FIELDS: string[] = ['id', 'name', 'price', 'brand', 'style', 'color'];
