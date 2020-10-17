@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './authentication/auth.controller';
 import { AuthModule } from './authentication/auth.module';
+import { JacketsModule } from './models/jacket/jackets.module';
 import { ShoesModule } from './models/shoes/shoes.module';
 import { PostgresDatabaseProviderModule } from './providers/database/provider.module';
 
@@ -8,7 +9,8 @@ import { PostgresDatabaseProviderModule } from './providers/database/provider.mo
     imports: [
         PostgresDatabaseProviderModule,
         ShoesModule,
-        AuthModule
+        AuthModule,
+        JacketsModule
     ],
     controllers: [AuthController],
     providers: [],
