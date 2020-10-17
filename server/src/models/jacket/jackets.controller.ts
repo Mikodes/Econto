@@ -12,7 +12,7 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @Controller('jacket')
 @UseGuards(JwtAuthGuard)
-export class JacketController {
+export class JacketsController {
     constructor(private readonly _jacketService: JacketsService) { }
 
     @Get('/:id')

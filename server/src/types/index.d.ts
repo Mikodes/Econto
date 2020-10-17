@@ -1,3 +1,4 @@
+import { Jacket } from "src/models/jacket/entities/jacket.entity";
 import { Shoes } from "src/models/shoes/entities/shoes.entity";
 import { User } from "src/models/user/entities/user.entity";
 
@@ -12,4 +13,4 @@ export interface IUserPaylaod {
     username: string;
 }
 
-export type TEntity = Shoes | User;
+export type TEntity = Shoes | User | Jacket;
