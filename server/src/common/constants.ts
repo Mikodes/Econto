@@ -13,6 +13,17 @@ export enum Color {
     BLUE = 'blue'
 }
 
+export enum Style {
+    TRACK = 'track',
+    WINTER = 'winter',
+    WINDBREAKERS = 'windbreakers',
+    RAIN = 'rain',
+    FLEECE = 'fleece',
+    FULL_ZIP = 'full_zip',
+    HOODIES = 'hoodies',
+    BOMBER = 'bomber'
+}
+
 export enum Entity {
     SHOES,
     USER
