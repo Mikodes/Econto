@@ -26,5 +26,6 @@ export enum Style {
 
 export enum Entity {
     SHOES,
-    USER
+    USER,
+    JACKET
 }
