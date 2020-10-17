@@ -12,4 +12,4 @@ import { JacketsService } from './jackets.service';
     exports: []
 })
 
-export class JacketModule {}
+export class JacketsModule {}
