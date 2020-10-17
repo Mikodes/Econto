@@ -1,11 +1,11 @@
-import { Jacket } from "../../../models/jacket/entities/jacket.entity";
+import { Jacket } from "../../models/jacket/entities/jacket.entity";
 import { random } from 'faker';
-import { Color, Entity, Style } from "../../../common/constants";
-import { JacketsService } from "../../../models/jacket/jackets.service";
-import { JacketResponse } from "../../../models/jacket/dto/jacket.dto";
+import { Color, Entity, Style } from "../../common/constants";
+import { JacketsService } from "../../models/jacket/jackets.service";
+import { JacketResponse } from "../../models/jacket/dto/jacket.dto";
 import { red } from 'chalk';
-import { BaseSeeder } from "../base.seeder";
-import { RepositoryGetter } from "../../utils/repository-getter";
+import { BaseSeeder } from "./base.seeder";
+import { RepositoryGetter } from "../utils/repository-getter";
 import { Repository } from "typeorm";
 
 class JacketSeeder extends BaseSeeder<Jacket> {

@@ -1,16 +1,16 @@
-import { Bag } from "../../../models/bag/entities/bag.entity";
+import { Bag } from "../../models/bag/entities/bag.entity";
 import { random } from 'faker';
-import { Color, Entity } from "../../../common/constants";
-import { BagsService } from "../../../models/bag/bags.service";
-import { BagResponse } from "../../../models/bag/dto/bag.dto";
+import { Color, Entity } from "../../common/constants";
+import { BagsService } from "../../models/bag/bags.service";
+import { BagResponse } from "../../models/bag/dto/bag.dto";
 import { red } from 'chalk';
-import { BaseSeeder } from "../base.seeder";
-import { RepositoryGetter } from "../../utils/repository-getter";
+import { BaseSeeder } from "./base.seeder";
+import { RepositoryGetter } from "../utils/repository-getter";
 import { Repository } from "typeorm";
 
 class BagSeeder extends BaseSeeder<Bag> {
     public static async generateSeed(): Promise<void> {
-        const repository = await new RepositoryGetter().getRepository(Entity.JACKET);
+        const repository = await new RepositoryGetter().getRepository(Entity.BAG);
         const service = new BagsService(repository as Repository<Bag>);
 
         const seeder = new BagSeeder(service);

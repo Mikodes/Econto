@@ -1,11 +1,11 @@
-import { Shoes } from "../../../models/shoes/entities/shoes.entity";
+import { Shoes } from "../../models/shoes/entities/shoes.entity";
 import { random } from 'faker';
-import { Color, Entity, Gender } from "../../../common/constants";
-import { ShoesService } from "../../../models/shoes/shoes.service";
-import { ShoesResponse } from "../../../models/shoes/dto/shoes.dto";
+import { Color, Entity, Gender } from "../../common/constants";
+import { ShoesService } from "../../models/shoes/shoes.service";
+import { ShoesResponse } from "../../models/shoes/dto/shoes.dto";
 import { red } from 'chalk';
-import { BaseSeeder } from "../base.seeder";
-import { RepositoryGetter } from "../../utils/repository-getter";
+import { BaseSeeder } from "./base.seeder";
+import { RepositoryGetter } from "../utils/repository-getter";
 import { Repository } from "typeorm";
 
 class ShoesSeeder extends BaseSeeder<Shoes> {
