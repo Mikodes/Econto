@@ -1,4 +1,4 @@
-import { Color, Gender, Style } from "../../../common/constants";
+import { Color, Style } from "../../../common/constants";
 import { Column, Entity } from "typeorm";
 import { BaseEntity } from "../../base.entity";
 
