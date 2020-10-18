@@ -12,11 +12,11 @@ import config from "../../config";
                 username: config.DATABASE.USER,
                 password: config.DATABASE.PASSWORD,
                 database: config.DATABASE.NAME,
-                entities: ['**/*.entity{.ts,.js}'],
+                entities: [`${config.APP.MODE === 'development' ? 'src/**/*.entity.ts' : 'dist/**/*.entity.js'}`],
                 migrationsTableName: 'migrations',
-                migrations: ['src/database/migrations/*.ts'],
+                migrations: [`${config.APP.MODE === 'development' ? 'src/database/migrations/*.ts' : 'dist/database/migrations/*.js'}`],
                 cli: {
-                    migrationsDir: 'src/database/migrations'
+                    migrationsDir: `${config.APP.MODE === 'development' ? 'src/database/migrations' : 'dist/database/migrations'}`
                 }
             })
         } as TypeOrmModuleAsyncOptions)
