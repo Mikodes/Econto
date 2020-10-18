@@ -10,8 +10,6 @@ COPY . /app
 
 RUN npm install -g typescript
 
-RUN npm run build:ts
+RUN npm run build
 
-RUN npm run build:webpack
-
-CMD ["npm", "run", "prod"]
+CMD ["npm", "run", "start:prod"]
