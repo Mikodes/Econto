@@ -1,4 +1,4 @@
-import { object, string, number } from '@hapi/joi';
+import { object, string, number, bool } from '@hapi/joi';
 import { red } from 'chalk';
 import config from '../../config';
 
@@ -30,7 +30,9 @@ export class ConfigValidator {
                 HOST: string(),
                 PASSWORD: string().min(1),
                 PORT: number().min(80).max(10000),
-                USER: string().min(1)
+                USER: string().min(1),
+                IS_LOCAL: bool(),
+                URL: string()
             }
         });
     }
