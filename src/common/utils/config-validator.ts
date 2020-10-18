@@ -20,7 +20,7 @@ export class ConfigValidator {
             APP: {
                 MODE: string().valid('development', 'production', 'test'),
                 PREFIX: string(),
-                PORT: number().min(80).max(10000)
+                PORT: number()
             },
             AUTH: {
                 SECRET: string().min(10)
