@@ -27,7 +27,7 @@ export class ConfigValidator {
             },
             DATABASE: {
                 NAME: string().min(1),
-                HOST: string().ip(),
+                HOST: string(),
                 PASSWORD: string().min(1),
                 PORT: number().min(80).max(10000),
                 USER: string().min(1)
