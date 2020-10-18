@@ -20,13 +20,16 @@ class OrmConfigGenerator {
     }
 
     private getOptionsFromEnvironmentVariables() {
-        return {
+        return config.DATABASE.IS_LOCAL === 'true' ? {
             ssl: config.APP.MODE === 'production' ? true : false,
             host: config.DATABASE.HOST,
             port: config.DATABASE.PORT,
             username: config.DATABASE.USER,
             password: config.DATABASE.PASSWORD,
             database: config.DATABASE.NAME
+        } : {
+            ssl: config.APP.MODE === 'production' ? true : false,
+            url: config.DATABASE.URL
         }
     }
 }

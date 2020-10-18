@@ -19,6 +19,7 @@
     "prestart:prod": "npm run build",
     "postinstall": "npm run prestart:prod",
     "start:prod": "cross-env APP_MODE=production node dist/main",
+    "start:heroku": "npm run start:prod",
     "pretypeorm": "rm -f ormconfig.json && ts-node -r tsconfig-paths/register src/database/utils/generate-orm-config.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm:migration:generate": "npm run typeorm -- migration:generate -n",
